@@ -1,6 +1,6 @@
 Doc-ock-html — From doc-ock to HTML
 ------------------------------------
-%%VERSION%%
+v1.2.0
 
 Doc-ock-html generates HTML documentation using [Doc-ock][doc-ock]
 
