@@ -938,7 +938,7 @@ and class_type ~get_package (t : _ Types.ClassType.t) =
       in
       let subtree = Html_tree.make (expansion, []) in
       Html_tree.leave ();
-      a ~a:[ a_href ~kind:`Class name ] [pcdata name], [subtree]
+      a ~a:[ a_href ~kind:`Cty name ] [pcdata name], [subtree]
   in
   let ctyp =
     Markup.keyword "class type " ::
