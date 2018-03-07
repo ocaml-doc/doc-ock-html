@@ -141,12 +141,20 @@ let rec from_identifier : type a. get_package:('x -> string) -> stop_before:bool
       from_identifier_no_anchor ~get_package parent ("class " ^ name)
       >>| fun parent ->
       let kind = "class" in
-      { page = parent; anchor = Printf.sprintf "%s-%s" kind name; kind }
+      let suffix = Printf.sprintf "%s-%s" kind name in
+      if stop_before then
+        { page = parent; anchor = suffix; kind }
+      else
+        { page = suffix :: parent; anchor = ""; kind }
     | ClassType (parent, name) ->
       from_identifier_no_anchor ~get_package parent ("class type " ^ name)
       >>| fun parent ->
       let kind = "class-type" in
-      { page = parent; anchor = Printf.sprintf "%s-%s" kind name; kind }
+      let suffix = Printf.sprintf "%s-%s" kind name in
+      if stop_before then
+        { page = parent; anchor = suffix; kind }
+      else
+        { page = suffix :: parent; anchor = ""; kind }
     | Method (parent, name) ->
       from_identifier ~get_package ~stop_before:false parent
       >>= begin function
