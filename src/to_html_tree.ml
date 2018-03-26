@@ -354,20 +354,15 @@ and substitution
     Html_tree.Relative_link.of_fragment ~get_package ~base (Fragment.signature_of_module frag_mod) @
     pcdata " := " ::
     Html_tree.Relative_link.of_path ~stop_before:true ~get_package mod_path
-  | TypeSubst (frag_typ, vars, typ_path) ->
-    let params =
-      pcdata begin match vars with
-        | [] -> ""
-        | [v] -> v ^ "\194\160"
-        | _ -> "(" ^ String.concat ~sep:",\194\160" vars ^ ")\194\160"
-      end
-    in
+  | TypeSubst (frag_typ, td) ->
     Markup.keyword "type " ::
-    params ::
+    format_params td.Types.TypeDecl.Equation.params ::
     Html_tree.Relative_link.of_fragment ~get_package ~base (Fragment.any_sort frag_typ) @
     pcdata " := " ::
-    params ::
-    Html_tree.Relative_link.of_path ~stop_before:false ~get_package typ_path
+    match td.Types.TypeDecl.Equation.manifest with
+    | None -> assert false (* cf docOckCmti *)
+    | Some te ->
+      type_expr ~get_package te
 
 and constructor
    : 'b. get_package:('a -> string)
