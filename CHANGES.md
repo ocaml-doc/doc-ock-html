@@ -1,3 +1,8 @@
+v1.2.1
+------
+
+- Follow doc-ock evolution.
+
 v1.2.0
 ------
 
