@@ -1,3 +1,8 @@
+**Note:** this repo is inactive. The code has been merged into
+[https://github.com/ocaml/odoc][odoc].
+
+[odoc]: https://github.com/ocaml/odoc
+
 Doc-ock-html — From doc-ock to HTML
 ------------------------------------
 %%VERSION%%
